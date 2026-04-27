@@ -187,13 +187,14 @@ function Dot() {
   return (
     <span
       aria-hidden
-      className="shrink-0 self-start mt-[0.3em]"
+      className="shrink-0 self-start mt-[0.35em]"
       style={{
         display: 'block',
-        width: 12,
-        height: 12,
+        width: 8,
+        height: 8,
         borderRadius: '9999px',
-        backgroundColor: '#C4840A',
+        border: '1px solid #181816',
+        background: 'transparent',
       }}
     />
   )
@@ -266,8 +267,8 @@ export default function ForagingGuidePage() {
           <div className="border-t border-rule mb-8" />
           <ul className="space-y-3">
             {BEFORE_YOU_FORAGE.map((item, i) => (
-              <li key={i} className="flex gap-5 text-sm font-light text-ink leading-relaxed">
-                <span className="text-secondary shrink-0">—</span>
+              <li key={i} className="flex gap-4 text-sm font-light text-ink leading-relaxed">
+                <Dot />
                 <span>{item}</span>
               </li>
             ))}
