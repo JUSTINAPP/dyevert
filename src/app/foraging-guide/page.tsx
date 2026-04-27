@@ -278,13 +278,14 @@ export default function ForagingGuidePage() {
         {/* Dye plant list */}
         <section className="mb-14">
           <h2 className="text-xs font-light tracking-widest uppercase text-secondary mb-4">
-            Dye Plants of Australia
+            Suggested Dye Plants
           </h2>
           <div className="border-t border-rule mb-8" />
           <p className="text-sm font-light text-secondary leading-relaxed mb-10">
-            The following plants are commonly found in Australia's urban and semi-rural environments
-            and are known to produce colour. Results vary with mordant, water chemistry, and plant
-            health. Part of the project is discovering what your postcode holds.
+            The following plants are commonly found in urban and semi-rural environments and are
+            known to produce colour. Results vary with mordant, water chemistry, and plant health.
+            Part of the project is discovering what your postcode holds. Food waste sources of dye
+            are also included. This section will be added to as the project develops.
           </p>
 
           {DYE_PLANTS.map(({ family, plants }) => (
