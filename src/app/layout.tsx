@@ -15,6 +15,10 @@ export const metadata: Metadata = {
   title: 'Postcode Colour — dyevert',
   description:
     'A participatory natural dyeing project by Joanna Fowles. Participants collect plants from their own postcode and dye a small swatch of cloth. Part of dyevert — dyevert.com.',
+  icons: {
+    icon: '/assets/dyevert-favicon.png',
+    apple: '/assets/dyevert-icon-256x256.png',
+  },
 }
 
 export default function RootLayout({
