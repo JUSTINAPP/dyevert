@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import Nav from '@/app/components/Nav'
-import { supabase } from '@/app/lib/supabase'
 
 type FormState = {
   name: string
@@ -31,20 +30,26 @@ export default function RequestAKitPage() {
     setStatus('submitting')
     setErrorMsg('')
 
-    const { error } = await supabase.from('kit_requests').insert([
-      {
-        name: form.name.trim(),
-        address: form.address.trim(),
-        postcode: form.postcode.trim(),
-        email: form.email.trim() || null,
-      },
-    ])
+    try {
+      const res = await fetch('/api/request-kit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: form.name.trim(),
+          address: form.address.trim(),
+          postcode: form.postcode.trim(),
+          email: form.email.trim() || null,
+        }),
+      })
 
-    if (error) {
+      if (res.ok) {
+        setStatus('success')
+      } else {
+        throw new Error()
+      }
+    } catch {
       setStatus('error')
       setErrorMsg('Something went wrong. Please try again.')
-    } else {
-      setStatus('success')
     }
   }
 

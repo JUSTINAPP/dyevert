@@ -3,8 +3,6 @@ import Nav from '@/app/components/Nav'
 const FUTURE_GOALS = [
   'Expand participation to postcodes across Australia.',
   'Develop a publicly accessible map displaying colour swatches by postcode.',
-  'Extend the project nationwide, creating a colour atlas of Australia.',
-  'Publish an artist book with full swatch documentation and participant stories.',
   'Establish an ongoing lending programme for dyeing kits.',
   'Partner with schools and community organisations to broaden participation.',
 ]
@@ -34,10 +32,22 @@ export default function ProjectPage() {
             small swatch of cloth. The resulting swatch is returned to the project, where it joins a
             growing archive of colour mapped to place.
           </p>
-          <p className="text-sm font-light text-ink leading-relaxed">
+          <p className="text-sm font-light text-ink leading-relaxed mb-5">
             Each colour is a document. It records a postcode, a plant, a person, a moment in a
             particular season. Together the swatches form something larger: a portrait of a
             landscape rendered in the colours it produces.
+          </p>
+          <p className="text-sm font-light text-secondary leading-relaxed">
+            Postcode Colour is one project within{' '}
+            <a
+              href="https://dyevert.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-ink hover:text-secondary transition-colors duration-150"
+            >
+              dyevert
+            </a>
+            , Joanna Fowles&rsquo; broader practice exploring natural dyeing, colour, and community.
           </p>
         </section>
 
@@ -47,6 +57,30 @@ export default function ProjectPage() {
             The Artist
           </h2>
           <div className="border-t border-rule mb-8" />
+
+          <div className="flex gap-7 items-start mb-8">
+            {/* Placeholder profile image — replace with <Image> when photograph is available */}
+            <div
+              className="rounded-full shrink-0 bg-rule"
+              style={{ width: 120, height: 120 }}
+              aria-hidden
+            />
+            <div className="pt-1">
+              <p className="text-sm font-light text-ink">Joanna Fowles</p>
+              <p className="text-xs font-light text-secondary mt-1.5">
+                Melbourne, Australia
+              </p>
+              <a
+                href="https://joannafowles.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs font-light text-secondary hover:text-ink transition-colors duration-150 mt-1 block"
+              >
+                joannafowles.com
+              </a>
+            </div>
+          </div>
+
           <p className="text-sm font-light text-ink leading-relaxed mb-5">
             Joanna Fowles is a Melbourne-based artist and textile practitioner working across
             natural dyeing, weaving, and participatory art. Her practice, dyevert, explores the
@@ -57,7 +91,7 @@ export default function ProjectPage() {
             Joanna has been working with natural dyes for over a decade, developing a methodology
             that prioritises locally sourced plant materials and minimal intervention. She is
             particularly interested in the urban plant world — the weeds, street trees, and garden
-            escapes that constitute most people's daily botanical environment — as a source of
+            escapes that constitute most people&rsquo;s daily botanical environment — as a source of
             colour and knowledge.
           </p>
           <p className="text-sm font-light text-ink leading-relaxed">
@@ -84,22 +118,6 @@ export default function ProjectPage() {
               <p className="text-xs font-light text-secondary">March 2026</p>
             </div>
           </div>
-        </section>
-
-        {/* The book */}
-        <section className="mb-14">
-          <h2 className="text-xs font-light tracking-widest uppercase text-secondary mb-4">
-            The Book
-          </h2>
-          <div className="border-t border-rule mb-8" />
-          <p className="text-sm font-light text-ink leading-relaxed mb-5">
-            A future goal of the project is an artist book documenting the full archive of swatches
-            and the stories behind them. The book would function as a colour atlas of Australia.
-          </p>
-          <p className="text-sm font-light text-ink leading-relaxed">
-            Publishers of interest include Thames & Hudson, Hatje Cantz, and Phaidon. Expressions
-            of interest from editors and publishing partners are welcome.
-          </p>
         </section>
 
         {/* Future goals */}

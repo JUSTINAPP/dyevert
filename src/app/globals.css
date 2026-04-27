@@ -20,27 +20,14 @@ body {
   align-content: start;
 }
 
+/* Dots are empty outlines by default; fill with colour when real data exists */
 .hero-dot {
   width: 18px;
   height: 18px;
   border-radius: 9999px;
   flex-shrink: 0;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  position: relative;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-
-.hero-dot:hover {
-  transform: scale(1.15);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.14);
-  z-index: 1;
-}
-
-.hero-dot:focus-visible {
-  outline: 2px solid #181816;
-  outline-offset: 3px;
+  background: transparent;
+  border: 1px solid #d0cdc6;
 }
 
 @media (min-width: 640px) {

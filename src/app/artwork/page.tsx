@@ -8,6 +8,7 @@ type Swatch = {
   color: string
   postcode: string
   suburb: string
+  state: string
   plant: string
   part: string
   location: string
@@ -22,10 +23,11 @@ const SWATCHES: Swatch[] = [
     id: 1,
     color: '#c8a850',
     postcode: '3000',
-    suburb: 'Melbourne CBD',
+    suburb: 'Melbourne',
+    state: 'VIC',
     plant: 'Onion skins',
     part: 'Outer skins',
-    location: 'Urban garden',
+    location: 'Home kitchen',
     season: 'Summer',
     year: 2025,
     name: 'Mia Thornton',
@@ -35,11 +37,12 @@ const SWATCHES: Swatch[] = [
   {
     id: 2,
     color: '#8a9a72',
-    postcode: '3068',
-    suburb: 'Fitzroy',
+    postcode: '2026',
+    suburb: 'Edgecliff',
+    state: 'NSW',
     plant: 'Eucalyptus',
     part: 'Leaves',
-    location: 'Royal Park',
+    location: 'Local park',
     season: 'Spring',
     year: 2025,
     name: 'James Okafor',
@@ -48,110 +51,13 @@ const SWATCHES: Swatch[] = [
   },
   {
     id: 3,
-    color: '#b5613a',
-    postcode: '3141',
-    suburb: 'South Yarra',
-    plant: 'Wattle',
-    part: 'Bark',
-    location: 'Botanical Gardens',
-    season: 'Autumn',
-    year: 2025,
-    name: 'Priya Menon',
-    observations:
-      'The bark from fallen branches gave a terracotta rust. I was struck by how much colour was held in such a small amount of material.',
-  },
-  {
-    id: 4,
-    color: '#d4c285',
-    postcode: '3206',
-    suburb: 'Albert Park',
-    plant: 'Calendula',
-    part: 'Flowers',
-    location: 'Home garden',
-    season: 'Summer',
-    year: 2025,
-    name: 'Ruth Silverman',
-    observations:
-      'Bright and cheerful. The petals gave generously. I used flowers from my balcony garden — they are everywhere in summer.',
-  },
-  {
-    id: 5,
-    color: '#6b4c2a',
-    postcode: '3122',
-    suburb: 'Hawthorn',
-    plant: 'Black walnut',
-    part: 'Hulls',
-    location: 'Street tree',
-    season: 'Autumn',
-    year: 2025,
-    name: 'Tom Vickers',
-    observations:
-      'Exceptionally strong colour without any mordant. The hulls stained everything they touched. A rich, permanent brown.',
-  },
-  {
-    id: 6,
-    color: '#6b7a52',
-    postcode: '3031',
-    suburb: 'Kensington',
-    plant: 'Blackberry',
-    part: 'Leaves',
-    location: 'Maribyrnong River trail',
-    season: 'Spring',
-    year: 2025,
-    name: 'Anika Sørensen',
-    observations:
-      'An invasive plant turned useful material. The colour is muted and dusty — more interesting than a simple green.',
-  },
-  {
-    id: 7,
-    color: '#c8b99a',
-    postcode: '3280',
-    suburb: 'Warrnambool',
-    plant: 'Bracken fern',
-    part: 'Fronds',
-    location: 'Coastal heathland',
-    season: 'Spring',
-    year: 2025,
-    name: 'Elspeth Malone',
-    observations:
-      'Young spring fronds gave this warm stone colour. The heathland behind my house is full of bracken — I had no idea it could do this.',
-  },
-  {
-    id: 8,
-    color: '#9a9080',
-    postcode: '3550',
-    suburb: 'Bendigo',
-    plant: 'Eucalyptus',
-    part: 'Bark',
-    location: 'Bushland reserve',
-    season: 'Autumn',
-    year: 2025,
-    name: 'David Wu',
-    observations:
-      'Iron mordant transformed the colour from warm tan to this quiet grey. The combination felt alchemical.',
-  },
-  {
-    id: 9,
-    color: '#5a6440',
-    postcode: '3127',
-    suburb: 'Box Hill',
-    plant: 'Avocado',
-    part: 'Pits and skins',
-    location: 'Home kitchen',
-    season: 'Winter',
-    year: 2025,
-    name: 'Yuki Hashimoto',
-    observations:
-      'I saved avocado pits and skins for months. The resulting colour was this unexpected khaki — nothing like the pink I had read about.',
-  },
-  {
-    id: 10,
     color: '#c4a265',
-    postcode: '3977',
-    suburb: 'Cranbourne',
+    postcode: '4000',
+    suburb: 'Brisbane',
+    state: 'QLD',
     plant: 'Wattle',
     part: 'Flowers',
-    location: 'Cranbourne Botanical Gardens',
+    location: 'Street tree',
     season: 'Spring',
     year: 2025,
     name: 'Sarah Fitzgibbon',
@@ -159,10 +65,11 @@ const SWATCHES: Swatch[] = [
       'The flowers gave a lighter, more golden result than I expected. Collecting in early morning made a difference.',
   },
   {
-    id: 11,
+    id: 4,
     color: '#b09070',
-    postcode: '3350',
-    suburb: 'Ballarat',
+    postcode: '5067',
+    suburb: 'Norwood',
+    state: 'SA',
     plant: 'Chamomile',
     part: 'Flowers',
     location: 'Home garden',
@@ -173,60 +80,34 @@ const SWATCHES: Swatch[] = [
       'A gentle, buttery tone. Nothing like the sharp yellow of some dye plants. I liked its quietness.',
   },
   {
-    id: 12,
-    color: '#7a6040',
-    postcode: '3101',
-    suburb: 'Kew',
-    plant: 'Oak galls',
-    part: 'Galls',
-    location: 'Local park',
-    season: 'Autumn',
-    year: 2024,
-    name: 'Frances Borg',
-    observations:
-      'Rich in tannin. The colour is dark and serious. Collected beneath a very old English oak planted by the council in the 1920s.',
-  },
-  {
-    id: 13,
-    color: '#a07840',
-    postcode: '3630',
-    suburb: 'Shepparton',
-    plant: 'Pomegranate',
-    part: 'Skins',
-    location: 'Home orchard',
-    season: 'Autumn',
+    id: 5,
+    color: '#5a6440',
+    postcode: '6008',
+    suburb: 'Subiaco',
+    state: 'WA',
+    plant: 'Avocado',
+    part: 'Pits and skins',
+    location: 'Home kitchen',
+    season: 'Winter',
     year: 2025,
-    name: 'Nina Petrov',
+    name: 'Yuki Hashimoto',
     observations:
-      'From our backyard pomegranate tree. Nothing was wasted — the fruit was eaten, the skin dyed with.',
+      'I saved avocado pits and skins for months. The resulting colour was this unexpected khaki — nothing like the pink I had read about.',
   },
   {
-    id: 14,
-    color: '#7a8a62',
-    postcode: '3220',
-    suburb: 'Geelong',
-    plant: 'Nettle',
-    part: 'Leaves and stems',
-    location: 'Creek corridor',
+    id: 6,
+    color: '#c8b99a',
+    postcode: '7000',
+    suburb: 'Hobart',
+    state: 'TAS',
+    plant: 'Bracken fern',
+    part: 'Fronds',
+    location: 'Bushland',
     season: 'Spring',
     year: 2025,
-    name: 'Ben Carlisle',
+    name: 'Elspeth Malone',
     observations:
-      'Collected with long gloves. The process of turning something so prickly into colour felt right — a kind of negotiation with the plant.',
-  },
-  {
-    id: 15,
-    color: '#e0c9a6',
-    postcode: '3065',
-    suburb: 'Collingwood',
-    plant: 'Onion skins',
-    part: 'Outer skins',
-    location: 'Community garden',
-    season: 'Winter',
-    year: 2024,
-    name: 'Clara de Wit',
-    observations:
-      'A paler result than summer onion skins — perhaps the age of the onions, or the cooler water temperature. Interesting variation.',
+      'Young spring fronds gave this warm stone colour. The bush behind my house is full of bracken — I had no idea it could do this.',
   },
 ]
 
@@ -340,19 +221,17 @@ export default function ArtworkPage() {
           {hasFilters && (
             <button
               onClick={clearFilters}
-              className="text-xs font-light text-secondary hover:text-ink transition-colors duration-150 sm:ml-0"
+              className="text-xs font-light text-secondary hover:text-ink transition-colors duration-150"
             >
               Clear
             </button>
           )}
 
-          {/* Desktop count */}
           <span className="hidden sm:inline-block ml-auto text-xs font-light text-secondary">
             {filtered.length} {filtered.length === 1 ? 'swatch' : 'swatches'}
           </span>
         </div>
 
-        {/* Mobile count */}
         <p className="sm:hidden mt-3 text-xs font-light text-secondary">
           {filtered.length} {filtered.length === 1 ? 'swatch' : 'swatches'}
         </p>
@@ -407,7 +286,8 @@ export default function ArtworkPage() {
             />
 
             <p className="text-sm font-light text-ink">
-              {selected.postcode} {selected.suburb}
+              {selected.postcode} {selected.suburb}{' '}
+              <span className="text-secondary">{selected.state}</span>
             </p>
             <p className="text-xs font-light text-secondary mt-1">
               {selected.season} {selected.year}
