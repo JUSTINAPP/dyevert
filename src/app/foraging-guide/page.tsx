@@ -157,7 +157,7 @@ const DYE_PLANTS: {
 const SEASONS = [
   {
     season: 'Summer — December to February',
-    text: "Peak foraging season. Gardens and roadsides are abundant with flowers. Onion skins, calendula, chamomile, fennel, and St John's Wort are at their most productive. Japanese indigo can be harvested from established plants. Bracken fern young growth has passed; leaves are now mature.",
+    text: "Peak foraging season. Gardens and roadsides are abundant with flowers. Calendula, chamomile, fennel, and St John's Wort are at their most productive. Bracken fern young growth has passed; leaves are now mature.",
   },
   {
     season: 'Autumn — March to May',
@@ -165,11 +165,11 @@ const SEASONS = [
   },
   {
     season: 'Winter — June to August',
-    text: 'The quietest season for foraging. Kitchen materials become the primary source — onion skins, avocado, coffee. Madder roots from established plants can be carefully harvested. Oak galls and dried materials collected in autumn carry through. A good time to prepare equipment and mordants.',
+    text: 'The quietest season for foraging. Kitchen materials become the primary source — onion skins, avocado, coffee. Madder roots from established plants can be carefully harvested. Oak galls and dried materials collected in autumn carry through.',
   },
   {
     season: 'Spring — September to November',
-    text: 'Bracken fern sends up new fronds in September — collect lightly before they unfurl fully. Wattle flowers briefly and brilliantly. Blackberry and nettle leaf growth resumes along waterways and creek banks. Spring is also the time to sow Japanese indigo for summer harvest.',
+    text: 'Bracken fern sends up new fronds in September — collect lightly before they unfurl fully. Wattle flowers briefly and brilliantly. Blackberry and nettle leaf growth resumes along waterways and creek banks.',
   },
 ]
 
