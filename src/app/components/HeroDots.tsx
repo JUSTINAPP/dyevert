@@ -3,7 +3,8 @@
 import { useState } from 'react'
 import Image from 'next/image'
 
-const TOTAL = 300
+// 120 = 8×15 (mobile) = 10×12 (sm) = 15×8 (lg) — always a complete grid
+const TOTAL = 120
 
 export type DbSwatch = {
   id: number
@@ -41,7 +42,7 @@ export default function HeroDots({ swatches }: { swatches: DbSwatch[] }) {
 
   return (
     <>
-      <div className="hero-dot-grid flex-1 overflow-hidden px-4 sm:px-[14mm]" aria-label="Colour grid">
+      <div className="hero-dot-grid px-4 sm:px-[14mm]" aria-label="Colour grid">
         {Array.from({ length: TOTAL }, (_, i) => {
           const swatch = byPosition.get(i)
           if (swatch) {

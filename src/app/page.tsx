@@ -19,7 +19,7 @@ export default async function Home() {
     <div className="min-h-screen bg-white font-sans text-ink">
       <Nav />
 
-      <section className="h-[calc(100vh-3.5rem)] pt-10 flex flex-col">
+      <section className="min-h-[calc(100vh-3.5rem)] pt-10 flex flex-col justify-between">
         <HeroDots swatches={swatches ?? []} />
 
         <div className="shrink-0 border-t border-rule px-4 sm:px-[14mm] pt-10 sm:pt-12 pb-12 sm:pb-14">
