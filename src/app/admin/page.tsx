@@ -112,14 +112,14 @@ export default function AdminPage() {
 
     const { error } = await supabase.from('swatches').insert([
       {
-        color: form.color,
+        hex_colour: form.color,
         postcode: form.postcode.trim(),
-        plant: form.plant.trim(),
-        part: form.part.trim(),
-        location: form.location.trim() || null,
+        plant_material: form.plant.trim(),
+        plant_part: form.part.trim(),
+        collection_location: form.location.trim() || null,
         quantity: form.quantity.trim() || null,
         season: form.season,
-        name: form.name.trim() || null,
+        participant_name: form.name.trim() || null,
         observations: form.observations.trim() || null,
         image_url: imageUrl,
       },

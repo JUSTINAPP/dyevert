@@ -1,23 +1,27 @@
 import Link from 'next/link'
 import Nav from '@/app/components/Nav'
+import HeroDots from '@/app/components/HeroDots'
+import { supabase } from '@/app/lib/supabase'
 
-const DOTS = Array.from({ length: 300 })
+export default async function Home() {
+  const { data: swatches, error } = await supabase
+    .from('swatches')
+    .select(
+      'id, hex_colour, postcode, plant_material, plant_part, collection_location, season, participant_name, observations, image_url',
+    )
+    .not('hex_colour', 'is', null)
 
-export default function Home() {
+  if (error) {
+    console.error('[home] swatches fetch failed:', error.message)
+  }
+
   return (
     <div className="min-h-screen bg-white font-sans text-ink">
       <Nav />
 
-      {/* Hero */}
       <section className="h-[calc(100vh-3.5rem)] pt-10 flex flex-col">
-        {/* Dot grid — dots fill with colour when real swatch data is uploaded */}
-        <div className="hero-dot-grid flex-1 overflow-hidden px-4 sm:px-[14mm]" aria-hidden>
-          {DOTS.map((_, i) => (
-            <div key={i} className="hero-dot" />
-          ))}
-        </div>
+        <HeroDots swatches={swatches ?? []} />
 
-        {/* Tagline + CTA */}
         <div className="shrink-0 border-t border-rule px-4 sm:px-[14mm] pt-10 sm:pt-12 pb-12 sm:pb-14">
           <p className="text-sm font-light leading-relaxed text-ink">
             Every colour comes from a single plant, found in a single postcode.

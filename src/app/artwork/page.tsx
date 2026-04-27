@@ -1,115 +1,124 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
+import Image from 'next/image'
 import Nav from '@/app/components/Nav'
+import { supabase } from '@/app/lib/supabase'
 
+// Normalised swatch type used for display
 type Swatch = {
-  id: number
+  id: string
   color: string
   postcode: string
-  suburb: string
-  state: string
   plant: string
   part: string
   location: string
   season: string
-  year: number
   name: string
   observations: string
+  imageUrl: string | null
+  isReal: boolean
 }
 
-const SWATCHES: Swatch[] = [
+// Placeholder swatches — shown until more real data is uploaded
+const PLACEHOLDERS: Swatch[] = [
   {
-    id: 1,
-    color: '#c8a850',
-    postcode: '3000',
-    suburb: 'Melbourne',
-    state: 'VIC',
-    plant: 'Onion skins',
-    part: 'Outer skins',
-    location: 'Home kitchen',
-    season: 'Summer',
-    year: 2025,
-    name: 'Mia Thornton',
-    observations:
-      'A warm golden yellow, richer than expected from kitchen scraps. The colour deepened considerably with an alum mordant.',
-  },
-  {
-    id: 2,
+    id: 'p-1',
     color: '#8a9a72',
     postcode: '2026',
-    suburb: 'Edgecliff',
-    state: 'NSW',
     plant: 'Eucalyptus',
     part: 'Leaves',
     location: 'Local park',
-    season: 'Spring',
-    year: 2025,
+    season: 'Spring 2025',
     name: 'James Okafor',
     observations:
       'Surprised by the softness of the green. Leaves collected after rain seemed to give a stronger result.',
+    imageUrl: null,
+    isReal: false,
   },
   {
-    id: 3,
+    id: 'p-2',
     color: '#c4a265',
     postcode: '4000',
-    suburb: 'Brisbane',
-    state: 'QLD',
     plant: 'Wattle',
     part: 'Flowers',
     location: 'Street tree',
-    season: 'Spring',
-    year: 2025,
+    season: 'Spring 2025',
     name: 'Sarah Fitzgibbon',
     observations:
       'The flowers gave a lighter, more golden result than I expected. Collecting in early morning made a difference.',
+    imageUrl: null,
+    isReal: false,
   },
   {
-    id: 4,
+    id: 'p-3',
     color: '#b09070',
     postcode: '5067',
-    suburb: 'Norwood',
-    state: 'SA',
     plant: 'Chamomile',
     part: 'Flowers',
     location: 'Home garden',
-    season: 'Summer',
-    year: 2025,
+    season: 'Summer 2025',
     name: 'Ollie Breen',
-    observations:
-      'A gentle, buttery tone. Nothing like the sharp yellow of some dye plants. I liked its quietness.',
+    observations: 'A gentle, buttery tone. Nothing like the sharp yellow of some dye plants.',
+    imageUrl: null,
+    isReal: false,
   },
   {
-    id: 5,
+    id: 'p-4',
     color: '#5a6440',
     postcode: '6008',
-    suburb: 'Subiaco',
-    state: 'WA',
     plant: 'Avocado',
     part: 'Pits and skins',
     location: 'Home kitchen',
-    season: 'Winter',
-    year: 2025,
+    season: 'Winter 2025',
     name: 'Yuki Hashimoto',
     observations:
-      'I saved avocado pits and skins for months. The resulting colour was this unexpected khaki — nothing like the pink I had read about.',
+      'I saved avocado pits and skins for months. The colour was this unexpected khaki.',
+    imageUrl: null,
+    isReal: false,
   },
   {
-    id: 6,
+    id: 'p-5',
     color: '#c8b99a',
     postcode: '7000',
-    suburb: 'Hobart',
-    state: 'TAS',
     plant: 'Bracken fern',
     part: 'Fronds',
     location: 'Bushland',
-    season: 'Spring',
-    year: 2025,
+    season: 'Spring 2025',
     name: 'Elspeth Malone',
     observations:
-      'Young spring fronds gave this warm stone colour. The bush behind my house is full of bracken — I had no idea it could do this.',
+      'Young spring fronds gave this warm stone colour. The bush behind my house is full of bracken.',
+    imageUrl: null,
+    isReal: false,
   },
 ]
+
+function dbToSwatch(db: {
+  id: number
+  hex_colour: string | null
+  postcode: string
+  plant_material: string | null
+  plant_part: string | null
+  collection_location: string | null
+  season: string | null
+  participant_name: string | null
+  observations: string | null
+  image_url: string | null
+}): Swatch {
+  return {
+    id: `db-${db.id}`,
+    color: db.hex_colour ?? '#9a9080',
+    postcode: db.postcode,
+    plant: db.plant_material ?? '',
+    part: db.plant_part ?? '',
+    location: db.collection_location ?? '',
+    season: db.season ?? '',
+    name: db.participant_name ?? '',
+    observations: db.observations ?? '',
+    imageUrl: db.image_url,
+    isReal: true,
+  }
+}
 
 function unique(arr: string[]): string[] {
   return Array.from(new Set(arr)).sort()
@@ -125,7 +134,17 @@ type Filters = {
 
 const SEASONS = ['Summer', 'Autumn', 'Winter', 'Spring']
 
+function Row({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="flex gap-6">
+      <span className="text-xs font-light text-secondary w-20 shrink-0">{label}</span>
+      <span className="text-xs font-light text-ink">{value}</span>
+    </div>
+  )
+}
+
 export default function ArtworkPage() {
+  const [dbSwatches, setDbSwatches] = useState<Swatch[]>([])
   const [filters, setFilters] = useState<Filters>({
     postcode: '',
     plant: '',
@@ -135,23 +154,37 @@ export default function ArtworkPage() {
   })
   const [selected, setSelected] = useState<Swatch | null>(null)
 
+  useEffect(() => {
+    supabase
+      .from('swatches')
+      .select(
+        'id, hex_colour, postcode, plant_material, plant_part, collection_location, season, participant_name, observations, image_url',
+      )
+      .then(({ data }) => {
+        if (data) setDbSwatches(data.map(dbToSwatch))
+      })
+  }, [])
+
+  // Real swatches first, placeholders fill the rest
+  const allSwatches = [...dbSwatches, ...PLACEHOLDERS]
+
   const filtered = useMemo(
     () =>
-      SWATCHES.filter(
+      allSwatches.filter(
         (s) =>
           (!filters.postcode || s.postcode === filters.postcode) &&
           (!filters.plant || s.plant === filters.plant) &&
           (!filters.part || s.part === filters.part) &&
           (!filters.location || s.location === filters.location) &&
-          (!filters.season || s.season === filters.season),
+          (!filters.season || s.season.startsWith(filters.season)),
       ),
-    [filters],
+    [filters, dbSwatches], // eslint-disable-line react-hooks/exhaustive-deps
   )
 
-  const postcodes = unique(SWATCHES.map((s) => s.postcode))
-  const plants = unique(SWATCHES.map((s) => s.plant))
-  const parts = unique(SWATCHES.map((s) => s.part))
-  const locations = unique(SWATCHES.map((s) => s.location))
+  const postcodes = unique(allSwatches.map((s) => s.postcode))
+  const plants = unique(allSwatches.map((s) => s.plant).filter(Boolean))
+  const parts = unique(allSwatches.map((s) => s.part).filter(Boolean))
+  const locations = unique(allSwatches.map((s) => s.location).filter(Boolean))
   const hasFilters = Object.values(filters).some(Boolean)
 
   function set(key: keyof Filters) {
@@ -269,54 +302,55 @@ export default function ArtworkPage() {
           onClick={() => setSelected(null)}
         >
           <div
-            className="bg-white w-full sm:max-w-sm p-8 sm:p-10 relative overflow-y-auto max-h-screen sm:max-h-[90vh]"
+            className="bg-white w-full sm:max-w-sm relative overflow-y-auto max-h-screen sm:max-h-[90vh]"
             onClick={(e) => e.stopPropagation()}
           >
-            <button
-              onClick={() => setSelected(null)}
-              className="absolute top-6 right-8 text-xl leading-none text-secondary hover:text-ink transition-colors duration-150"
-              aria-label="Close"
-            >
-              ×
-            </button>
+            {/* Photograph (real swatches only) */}
+            {selected.imageUrl && (
+              <div className="relative w-full aspect-square bg-rule">
+                <Image
+                  src={selected.imageUrl}
+                  alt={`Swatch from postcode ${selected.postcode}`}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            )}
 
-            <div
-              className="w-20 h-20 rounded-full mb-8"
-              style={{ backgroundColor: selected.color }}
-            />
+            <div className="p-8 sm:p-10">
+              <button
+                onClick={() => setSelected(null)}
+                className="absolute top-5 right-7 text-xl leading-none text-secondary hover:text-ink transition-colors duration-150 z-10"
+                aria-label="Close"
+              >
+                ×
+              </button>
 
-            <p className="text-sm font-light text-ink">
-              {selected.postcode} {selected.suburb}{' '}
-              <span className="text-secondary">{selected.state}</span>
-            </p>
-            <p className="text-xs font-light text-secondary mt-1">
-              {selected.season} {selected.year}
-            </p>
+              <div
+                className="w-14 h-14 rounded-full mb-6"
+                style={{ backgroundColor: selected.color }}
+              />
 
-            <div className="border-t border-rule mt-6 pt-6 space-y-2.5">
-              <Row label="Plant" value={selected.plant} />
-              <Row label="Part" value={selected.part} />
-              <Row label="Collected" value={selected.location} />
-            </div>
+              <p className="text-sm font-light text-ink">{selected.postcode}</p>
+              <p className="text-xs font-light text-secondary mt-1">{selected.season}</p>
 
-            <div className="border-t border-rule mt-6 pt-6">
-              <p className="text-xs font-light text-secondary leading-relaxed italic">
-                &ldquo;{selected.observations}&rdquo;
-              </p>
-              <p className="text-xs font-light text-secondary mt-4">— {selected.name}</p>
+              <div className="border-t border-rule mt-6 pt-6 space-y-2.5">
+                {selected.plant && <Row label="Plant" value={selected.part ? `${selected.plant} — ${selected.part}` : selected.plant} />}
+                {selected.location && <Row label="Collected" value={selected.location} />}
+                {selected.name && <Row label="Participant" value={selected.name} />}
+              </div>
+
+              {selected.observations && (
+                <div className="border-t border-rule mt-6 pt-6">
+                  <p className="text-xs font-light text-secondary leading-relaxed italic">
+                    &ldquo;{selected.observations}&rdquo;
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         </div>
       )}
-    </div>
-  )
-}
-
-function Row({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="flex gap-6">
-      <span className="text-xs font-light text-secondary w-20 shrink-0">{label}</span>
-      <span className="text-xs font-light text-ink">{value}</span>
     </div>
   )
 }
