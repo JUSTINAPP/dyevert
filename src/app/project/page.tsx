@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Nav from '@/app/components/Nav'
 
 const FUTURE_GOALS = [
@@ -59,16 +60,19 @@ export default function ProjectPage() {
           <div className="border-t border-rule mb-8" />
 
           <div className="flex gap-7 items-start mb-8">
-            {/* Placeholder profile image — replace with <Image> when photograph is available */}
-            <div
-              className="rounded-full shrink-0 bg-rule"
-              style={{ width: 120, height: 120 }}
-              aria-hidden
-            />
+            <div className="rounded-full shrink-0 overflow-hidden" style={{ width: 120, height: 120 }}>
+              <Image
+                src="/assets/jo-fowles-dyevert-1080x1130.jpg"
+                alt="Joanna Fowles"
+                width={120}
+                height={120}
+                className="w-full h-full object-cover"
+              />
+            </div>
             <div className="pt-1">
               <p className="text-sm font-light text-ink">Joanna Fowles</p>
               <p className="text-xs font-light text-secondary mt-1.5">
-                Melbourne, Australia
+                Illawarra, Australia
               </p>
               <a
                 href="https://joannafowles.com"
@@ -82,7 +86,7 @@ export default function ProjectPage() {
           </div>
 
           <p className="text-sm font-light text-ink leading-relaxed mb-5">
-            Joanna Fowles is a Melbourne-based artist and textile practitioner working across
+            Joanna Fowles is an Illawarra-based artist and textile practitioner working across
             natural dyeing, weaving, and participatory art. Her practice, dyevert, explores the
             connections between place, colour, and community through materials found in the
             environment.
