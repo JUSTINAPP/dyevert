@@ -9,43 +9,53 @@ export async function POST(request: NextRequest) {
     email: string | null
   }
 
-  const smtpReady = process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS
+  const smtpUser = process.env.SMTP_USER
+  // Gmail App Passwords are displayed with spaces but must be used without them
+  const smtpPass = process.env.SMTP_PASS?.replace(/\s/g, '')
 
-  if (smtpReady) {
-    const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: parseInt(process.env.SMTP_PORT ?? '587'),
-      secure: process.env.SMTP_PORT === '465',
-      auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS },
-    })
-
-    const text = [
-      `Name: ${name}`,
-      `Address: ${address}`,
-      `Postcode: ${postcode}`,
-      `Email: ${email ?? 'not provided'}`,
-    ].join('\n')
-
-    try {
-      await transporter.sendMail({
-        from: process.env.SMTP_USER,
-        to: 'postcode@dyevert.com',
-        subject: `Kit request — ${postcode}`,
-        text,
-      })
-    } catch (err) {
-      // Log but don't surface SMTP errors to the user
-      console.error('[request-kit] email send failed:', err)
-    }
-  } else {
-    // Add SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS to .env.local to enable email delivery
-    console.log('[request-kit] SMTP not configured. Request received:', {
+  if (!smtpUser || !smtpPass) {
+    console.warn('[request-kit] SMTP_USER or SMTP_PASS not set — request not emailed:', {
       name,
-      address,
       postcode,
-      email,
     })
+    return Response.json({ success: true, warning: 'SMTP not configured' })
   }
 
-  return Response.json({ success: true })
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: { user: smtpUser, pass: smtpPass },
+  })
+
+  // Verify connection before attempting send
+  try {
+    await transporter.verify()
+    console.log('[request-kit] SMTP connection verified')
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err)
+    console.error('[request-kit] SMTP verify failed:', message)
+    return Response.json({ success: false, error: `SMTP connection failed: ${message}` }, { status: 500 })
+  }
+
+  const text = [
+    `Name: ${name}`,
+    `Address: ${address}`,
+    `Postcode: ${postcode}`,
+    `Email: ${email ?? 'not provided'}`,
+  ].join('\n')
+
+  try {
+    const info = await transporter.sendMail({
+      from: `"Postcode Colour" <${smtpUser}>`,
+      to: smtpUser, // send to the Gmail account directly; forward from there if needed
+      replyTo: email ?? smtpUser,
+      subject: `Kit request — ${postcode}`,
+      text,
+    })
+    console.log('[request-kit] sent, messageId:', info.messageId)
+    return Response.json({ success: true })
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err)
+    console.error('[request-kit] sendMail failed:', message)
+    return Response.json({ success: false, error: message }, { status: 500 })
+  }
 }

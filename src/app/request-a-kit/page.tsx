@@ -42,14 +42,17 @@ export default function RequestAKitPage() {
         }),
       })
 
-      if (res.ok) {
+      const data = await res.json()
+
+      if (res.ok && data.success) {
         setStatus('success')
       } else {
-        throw new Error()
+        throw new Error(data.error ?? 'Unknown error')
       }
-    } catch {
+    } catch (err) {
       setStatus('error')
-      setErrorMsg('Something went wrong. Please try again.')
+      const message = err instanceof Error ? err.message : 'Something went wrong.'
+      setErrorMsg(message)
     }
   }
 
