@@ -84,21 +84,19 @@ export default function ProjectPage() {
           </div>
 
           <p className="text-sm font-light text-ink leading-relaxed mb-5">
-            Joanna Fowles is an Illawarra-based artist and textile practitioner working in natural
-            dyeing and community practice. Her practice, dyevert, explores connections between
-            place, colour, and community through materials found in the environment.
+            Joanna Fowles is an Illawarra-based artist and textile practitioner working with natural
+            dye and plant matter. Her practice, dyevert, explores connections between place, colour
+            and the local environment through materials found close to hand.
           </p>
           <p className="text-sm font-light text-ink leading-relaxed mb-5">
-            Joanna has been working with natural dyes for over a decade, developing a methodology
-            that prioritises locally sourced plant materials and minimal intervention. She is
-            particularly interested in the urban plant world, including the weeds, street trees, and
-            garden escapes that form most people&rsquo;s daily botanical environment, as a source of
-            colour and knowledge.
+            She has been working with natural dyes for over a decade, developing a deep knowledge of
+            locally sourced plant materials. She is particularly interested in the urban plant world,
+            the weeds, street trees and overlooked plants as a source of colour and knowledge.
           </p>
           <p className="text-sm font-light text-ink leading-relaxed">
-            Postcode Colour extends this into a shared community practice, distributing the act of
-            dyeing across hundreds of postcodes and inviting community to engage with the plant life
-            of their surroundings.
+            Postcode Colour extends this into a collaborative project, distributing the act of
+            dyeing across postcodes around Australia and inviting community to engage with the plant
+            life of their own surroundings.
           </p>
         </section>
 
