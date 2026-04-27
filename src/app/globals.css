@@ -1,26 +1,70 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: var(--font-jost);
+  --color-ink: #181816;
+  --color-secondary: #8a8a82;
+  --color-rule: #d0cdc6;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: white;
+  color: #181816;
+}
+
+/* Responsive dot grid — homepage hero */
+.hero-dot-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 18px);
+  gap: 8px;
+  align-content: start;
+}
+
+.hero-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  flex-shrink: 0;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.hero-dot:hover {
+  transform: scale(1.15);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.14);
+  z-index: 1;
+}
+
+.hero-dot:focus-visible {
+  outline: 2px solid #181816;
+  outline-offset: 3px;
+}
+
+@media (min-width: 640px) {
+  .hero-dot-grid {
+    grid-template-columns: repeat(auto-fill, 28px);
+    gap: 8px;
+  }
+
+  .hero-dot {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* Responsive swatch grid — artwork page */
+.swatch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
+  gap: 1.75rem 1rem;
+}
+
+@media (min-width: 640px) {
+  .swatch-grid {
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 2.5rem 1.5rem;
+  }
 }

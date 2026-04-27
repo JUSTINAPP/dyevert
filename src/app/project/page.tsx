@@ -1,0 +1,134 @@
+import Nav from '@/app/components/Nav'
+
+const FUTURE_GOALS = [
+  'Expand participation to postcodes across Australia.',
+  'Develop a publicly accessible map displaying colour swatches by postcode.',
+  'Extend the project nationwide, creating a colour atlas of Australia.',
+  'Publish an artist book with full swatch documentation and participant stories.',
+  'Establish an ongoing lending programme for dyeing kits.',
+  'Partner with schools and community organisations to broaden participation.',
+]
+
+export default function ProjectPage() {
+  return (
+    <div className="min-h-screen bg-white font-sans text-ink">
+      <Nav />
+
+      <main className="px-4 sm:px-[14mm] pt-12 sm:pt-14 pb-20 sm:pb-24 max-w-2xl">
+        <h1 className="text-xs font-light tracking-widest uppercase text-secondary">The Project</h1>
+        <div className="border-t border-rule mt-4 mb-12" />
+
+        {/* About */}
+        <section className="mb-14">
+          <h2 className="text-xs font-light tracking-widest uppercase text-secondary mb-4">
+            About Postcode Colour
+          </h2>
+          <div className="border-t border-rule mb-8" />
+          <p className="text-sm font-light text-ink leading-relaxed mb-5">
+            Postcode Colour is a participatory natural dyeing project that begins with a simple
+            question: what colours does your postcode hold?
+          </p>
+          <p className="text-sm font-light text-ink leading-relaxed mb-5">
+            Participants across Australia collect plant material from within their own postcode area
+            — from gardens, parks, roadsides, creek banks, and kitchen scraps — and use it to dye a
+            small swatch of cloth. The resulting swatch is returned to the project, where it joins a
+            growing archive of colour mapped to place.
+          </p>
+          <p className="text-sm font-light text-ink leading-relaxed">
+            Each colour is a document. It records a postcode, a plant, a person, a moment in a
+            particular season. Together the swatches form something larger: a portrait of a
+            landscape rendered in the colours it produces.
+          </p>
+        </section>
+
+        {/* The artist */}
+        <section className="mb-14">
+          <h2 className="text-xs font-light tracking-widest uppercase text-secondary mb-4">
+            The Artist
+          </h2>
+          <div className="border-t border-rule mb-8" />
+          <p className="text-sm font-light text-ink leading-relaxed mb-5">
+            Joanna Fowles is a Melbourne-based artist and textile practitioner working across
+            natural dyeing, weaving, and participatory art. Her practice, dyevert, explores the
+            connections between place, colour, and community through materials found in the
+            environment.
+          </p>
+          <p className="text-sm font-light text-ink leading-relaxed mb-5">
+            Joanna has been working with natural dyes for over a decade, developing a methodology
+            that prioritises locally sourced plant materials and minimal intervention. She is
+            particularly interested in the urban plant world — the weeds, street trees, and garden
+            escapes that constitute most people's daily botanical environment — as a source of
+            colour and knowledge.
+          </p>
+          <p className="text-sm font-light text-ink leading-relaxed">
+            Postcode Colour extends this interest into participatory form, distributing the act of
+            dyeing across hundreds of postcodes and inviting non-specialists to engage with the
+            plant life of their immediate surroundings.
+          </p>
+        </section>
+
+        {/* Exhibition */}
+        <section className="mb-14">
+          <h2 className="text-xs font-light tracking-widest uppercase text-secondary mb-4">
+            Exhibition History
+          </h2>
+          <div className="border-t border-rule mb-0" />
+          <div className="border-b border-rule py-6 flex gap-10">
+            <span className="text-xs font-light text-secondary shrink-0 w-10">2026</span>
+            <div>
+              <p className="text-sm font-light text-ink">Postcode Colour</p>
+              <p className="text-xs font-light text-secondary mt-1.5">Melbourne Design Week 2026</p>
+              <p className="text-xs font-light text-secondary">
+                Australian Tapestry Workshop, South Melbourne
+              </p>
+              <p className="text-xs font-light text-secondary">March 2026</p>
+            </div>
+          </div>
+        </section>
+
+        {/* The book */}
+        <section className="mb-14">
+          <h2 className="text-xs font-light tracking-widest uppercase text-secondary mb-4">
+            The Book
+          </h2>
+          <div className="border-t border-rule mb-8" />
+          <p className="text-sm font-light text-ink leading-relaxed mb-5">
+            A future goal of the project is an artist book documenting the full archive of swatches
+            and the stories behind them. The book would function as a colour atlas of Australia.
+          </p>
+          <p className="text-sm font-light text-ink leading-relaxed">
+            Publishers of interest include Thames & Hudson, Hatje Cantz, and Phaidon. Expressions
+            of interest from editors and publishing partners are welcome.
+          </p>
+        </section>
+
+        {/* Future goals */}
+        <section className="mb-14">
+          <h2 className="text-xs font-light tracking-widest uppercase text-secondary mb-4">
+            Future Goals
+          </h2>
+          <div className="border-t border-rule mb-8" />
+          <ul className="space-y-3">
+            {FUTURE_GOALS.map((goal, i) => (
+              <li key={i} className="flex gap-5 text-sm font-light text-ink leading-relaxed">
+                <span className="text-secondary shrink-0">—</span>
+                <span>{goal}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        {/* Press */}
+        <section className="mb-14">
+          <h2 className="text-xs font-light tracking-widest uppercase text-secondary mb-4">
+            Press & Publications
+          </h2>
+          <div className="border-t border-rule mb-8" />
+          <p className="text-sm font-light text-secondary leading-relaxed">
+            Coverage and publication details will appear here as the project develops.
+          </p>
+        </section>
+      </main>
+    </div>
+  )
+}
