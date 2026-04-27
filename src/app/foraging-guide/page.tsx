@@ -183,6 +183,22 @@ const SAFETY = [
   'If you experience a skin reaction, wash the area thoroughly and seek medical advice if it persists.',
 ]
 
+function Dot() {
+  return (
+    <span
+      aria-hidden
+      className="shrink-0 self-start mt-[0.3em]"
+      style={{
+        display: 'block',
+        width: 12,
+        height: 12,
+        borderRadius: '9999px',
+        backgroundColor: '#C4840A',
+      }}
+    />
+  )
+}
+
 export default function ForagingGuidePage() {
   return (
     <div className="min-h-screen bg-white font-sans text-ink">
@@ -212,16 +228,34 @@ export default function ForagingGuidePage() {
             relationship between harvester and harvested — one based on reciprocity rather than
             extraction.
           </p>
-          <ol className="space-y-3">
+          <ul className="space-y-3">
             {HONOURABLE_HARVEST.map((principle, i) => (
-              <li key={i} className="flex gap-6 text-sm font-light text-ink leading-relaxed">
-                <span className="text-secondary shrink-0 tabular-nums w-5 text-right">
-                  {i + 1}.
-                </span>
+              <li key={i} className="flex gap-4 text-sm font-light text-ink leading-relaxed">
+                <Dot />
                 <span>{principle}</span>
               </li>
             ))}
-          </ol>
+          </ul>
+          <p className="mt-8 text-xs font-light text-secondary leading-relaxed">
+            Principles drawn from the work of{' '}
+            <a
+              href="https://www.robinwallkimmerer.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-ink transition-colors duration-150"
+            >
+              Robin Wall Kimmerer
+            </a>
+            . Learn more at{' '}
+            <a
+              href="https://www.robinwallkimmerer.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-ink transition-colors duration-150"
+            >
+              robinwallkimmerer.com
+            </a>
+          </p>
         </section>
 
         {/* Before you forage */}
@@ -305,8 +339,8 @@ export default function ForagingGuidePage() {
           <div className="border-t border-rule mb-8" />
           <ul className="space-y-3">
             {SAFETY.map((item, i) => (
-              <li key={i} className="flex gap-5 text-sm font-light text-ink leading-relaxed">
-                <span className="text-secondary shrink-0">—</span>
+              <li key={i} className="flex gap-4 text-sm font-light text-ink leading-relaxed">
+                <Dot />
                 <span>{item}</span>
               </li>
             ))}
