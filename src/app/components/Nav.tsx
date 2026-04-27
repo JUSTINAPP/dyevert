@@ -7,6 +7,7 @@ const NAV = [
   { label: 'The Artwork', href: '/artwork' },
   { label: 'Request a Kit', href: '/request-a-kit' },
   { label: 'Foraging Guide', href: '/foraging-guide' },
+  { label: 'Dyeing Guide', href: '/dyeing-guide' },
   { label: 'The Project', href: '/project' },
 ]
 
