@@ -19,9 +19,12 @@ export default function Nav() {
         <nav className="flex items-center text-xs tracking-wide w-full">
           <Link
             href="/"
-            className="font-light text-ink uppercase hover:text-secondary transition-colors duration-150"
+            className="flex flex-col leading-[1.15] tracking-widest uppercase text-ink hover:text-secondary transition-colors duration-150 shrink-0"
+            style={{ fontSize: '13px', fontWeight: 500 }}
+            aria-label="Postcode Colour — home"
           >
-            Postcode Colour
+            <span>Postcode</span>
+            <span>Colour</span>
           </Link>
 
           {/* Desktop links */}
