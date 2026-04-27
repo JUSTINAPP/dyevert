@@ -4,8 +4,6 @@ import Nav from '@/app/components/Nav'
 const FUTURE_GOALS = [
   'Expand participation to postcodes across Australia.',
   'Develop a publicly accessible map displaying colour swatches by postcode.',
-  'Establish an ongoing lending programme for dyeing kits.',
-  'Partner with schools and community organisations to broaden participation.',
 ]
 
 export default function ProjectPage() {
@@ -86,22 +84,21 @@ export default function ProjectPage() {
           </div>
 
           <p className="text-sm font-light text-ink leading-relaxed mb-5">
-            Joanna Fowles is an Illawarra-based artist and textile practitioner working across
-            natural dyeing, weaving, and participatory art. Her practice, dyevert, explores the
-            connections between place, colour, and community through materials found in the
-            environment.
+            Joanna Fowles is an Illawarra-based artist and textile practitioner working in natural
+            dyeing and community practice. Her practice, dyevert, explores connections between
+            place, colour, and community through materials found in the environment.
           </p>
           <p className="text-sm font-light text-ink leading-relaxed mb-5">
             Joanna has been working with natural dyes for over a decade, developing a methodology
             that prioritises locally sourced plant materials and minimal intervention. She is
-            particularly interested in the urban plant world — the weeds, street trees, and garden
-            escapes that constitute most people&rsquo;s daily botanical environment — as a source of
+            particularly interested in the urban plant world, including the weeds, street trees, and
+            garden escapes that form most people&rsquo;s daily botanical environment, as a source of
             colour and knowledge.
           </p>
           <p className="text-sm font-light text-ink leading-relaxed">
-            Postcode Colour extends this interest into participatory form, distributing the act of
-            dyeing across hundreds of postcodes and inviting non-specialists to engage with the
-            plant life of their immediate surroundings.
+            Postcode Colour extends this into a shared community practice, distributing the act of
+            dyeing across hundreds of postcodes and inviting community to engage with the plant life
+            of their surroundings.
           </p>
         </section>
 
@@ -138,17 +135,6 @@ export default function ProjectPage() {
               </li>
             ))}
           </ul>
-        </section>
-
-        {/* Press */}
-        <section className="mb-14">
-          <h2 className="text-xs font-light tracking-widest uppercase text-secondary mb-4">
-            Press & Publications
-          </h2>
-          <div className="border-t border-rule mb-8" />
-          <p className="text-sm font-light text-secondary leading-relaxed">
-            Coverage and publication details will appear here as the project develops.
-          </p>
         </section>
       </main>
     </div>

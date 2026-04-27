@@ -24,7 +24,7 @@ export default async function Home() {
 
         <div className="shrink-0 border-t border-rule px-4 sm:px-[14mm] pt-10 sm:pt-12 pb-12 sm:pb-14">
           <p className="text-sm font-light leading-relaxed text-ink">
-            Every colour comes from a single plant, found in a single postcode.
+            A plant + A person + A place = Colour
           </p>
           <div className="flex gap-8 mt-8">
             <Link

@@ -24,7 +24,7 @@ type Swatch = {
 const PLACEHOLDERS: Swatch[] = [
   {
     id: 'p-1',
-    color: '#8a9a72',
+    color: '#8B3A2A',
     postcode: '2026',
     plant: 'Eucalyptus',
     part: 'Leaves',
@@ -38,7 +38,7 @@ const PLACEHOLDERS: Swatch[] = [
   },
   {
     id: 'p-2',
-    color: '#c4a265',
+    color: '#E8D44D',
     postcode: '4000',
     plant: 'Wattle',
     part: 'Flowers',
@@ -52,7 +52,7 @@ const PLACEHOLDERS: Swatch[] = [
   },
   {
     id: 'p-3',
-    color: '#b09070',
+    color: '#E2C84B',
     postcode: '5067',
     plant: 'Chamomile',
     part: 'Flowers',
@@ -65,7 +65,7 @@ const PLACEHOLDERS: Swatch[] = [
   },
   {
     id: 'p-4',
-    color: '#5a6440',
+    color: '#D4A090',
     postcode: '6008',
     plant: 'Avocado',
     part: 'Pits and skins',
@@ -79,7 +79,7 @@ const PLACEHOLDERS: Swatch[] = [
   },
   {
     id: 'p-5',
-    color: '#c8b99a',
+    color: '#B5C45A',
     postcode: '7000',
     plant: 'Bracken fern',
     part: 'Fronds',
