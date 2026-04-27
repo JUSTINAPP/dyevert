@@ -213,8 +213,8 @@ export default function ForagingGuidePage() {
 
         <p className="text-sm font-light text-ink leading-relaxed mb-14">
           This guide is for participants in Postcode Colour. It is an introduction to foraging for
-          natural dye plants in the urban and peri-urban environments of Australia. You do not need
-          prior experience — only curiosity, care, and a postcode.
+          natural dye from plants in the urban environment. You do not need prior experience — only
+          curiosity, care, and a postcode.
         </p>
 
         {/* The Honourable Harvest */}
