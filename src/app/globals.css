@@ -14,17 +14,17 @@ body {
 
 /* Responsive dot grid — homepage hero
    Column counts all divide evenly into 120 → no partial rows ever.
-   1fr columns + aspect-ratio: 1 → perfect circles scaled to the viewport. */
+   1fr columns + aspect-ratio: 1 → perfect circles scaled to the viewport.
+   Mobile: 10×12 at 4px gap fits the full grid on a 390×844 iPhone. */
 .hero-dot-grid {
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  gap: 8px;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 4px;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 768px) {
   .hero-dot-grid {
-    grid-template-columns: repeat(10, 1fr);
-    gap: 10px;
+    gap: 8px;
   }
 }
 
