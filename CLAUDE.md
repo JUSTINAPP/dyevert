@@ -6,6 +6,17 @@ for the Postcode Colour website. Save this into the root of the dyevert project 
 
 ---
 
+## AGENT BEHAVIOUR — REQUIRED
+
+After completing any code changes, always automatically run in sequence:
+1. `git add .`
+2. `git commit -m "descriptive message summarising what was changed"`
+3. `git push origin main`
+
+Do this at the end of every task without waiting to be asked.
+
+---
+
 ## WEBSITE
 
 | Item | Detail |
