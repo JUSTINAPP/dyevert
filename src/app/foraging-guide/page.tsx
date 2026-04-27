@@ -16,7 +16,7 @@ const HONOURABLE_HARVEST = [
 const BEFORE_YOU_FORAGE = [
   'Identify the plant before you harvest. Use a field guide relevant to your region, or consult iNaturalist.',
   'Collect away from roadsides, railway corridors, and land that may have been sprayed or treated.',
-  'Do not harvest from private property without permission.',
+  'Do not harvest from private property or national parks without permission.',
   'Wash all plant material thoroughly before use.',
   'Wear gloves when handling unfamiliar plants.',
   'Do not ingest any dye plant material.',
